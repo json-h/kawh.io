@@ -1,0 +1,107 @@
+:root {
+    --bg: #171f32;
+    --card-bg: #101727;
+    --highlight: #ff611d;
+  }
+
+  html{
+    background-color: var(--bg);
+  }
+  
+  body {
+    background: var(--bg);
+  }
+
+  p {
+    color: white
+  }
+  
+  .site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  .site-content {
+    flex: 1;
+  }
+
+  .box {
+    background: var(--card-bg);
+  }
+  
+  .label {
+    color: #ffffff
+  }
+  
+  .checkbox {
+    color: #ffffff
+  }
+  
+  /* remove with scss */
+
+  .navbar.is-dark {
+    background: var(--card-bg);
+  }
+
+  .navbar-dropdown {
+    background-color: var(--card-bg);
+  }
+
+  .navbar-item, 
+  .navbar-link {
+    color: white;
+  }
+  
+  .navbar.is-dark .navbar-brand .navbar-link.is-active, 
+  .navbar.is-dark .navbar-brand .navbar-link:focus, 
+  .navbar.is-dark .navbar-brand .navbar-link:hover, 
+  .navbar.is-dark .navbar-brand>a.navbar-item.is-active, 
+  .navbar.is-dark .navbar-brand>a.navbar-item:focus, 
+  .navbar.is-dark .navbar-brand>a.navbar-item:hover, 
+  .navbar.is-dark .navbar-end .navbar-link.is-active, 
+  .navbar.is-dark .navbar-end .navbar-link:focus, 
+  .navbar.is-dark .navbar-end .navbar-link:hover, 
+  .navbar.is-dark .navbar-end>a.navbar-item.is-active, 
+  .navbar.is-dark .navbar-end>a.navbar-item:focus, 
+  .navbar.is-dark .navbar-end>a.navbar-item:hover, 
+  .navbar.is-dark .navbar-start .navbar-link.is-active, 
+  .navbar.is-dark .navbar-start .navbar-link:focus, 
+  .navbar.is-dark .navbar-start .navbar-link:hover, 
+  .navbar.is-dark .navbar-start>a.navbar-item.is-active, 
+  .navbar.is-dark .navbar-start>a.navbar-item:focus, 
+  .navbar.is-dark .navbar-start>a.navbar-item:hover {
+    background-color: var(--card-bg);
+    color: var(--highlight);
+}
+
+  .button, 
+  .button:focus,
+  .button:active {
+    color: #ffffff;
+    background-color: var(--highlight);
+    border-width: 0px;
+  }
+
+  .button:hover {
+    color: #ffffff;
+    background-color: var(--card-bg);
+    border-width: 0px;
+  }
+  
+  /* end remove */
+  
+  .title.no-padding {
+    margin-bottom: 0 !important;
+  }
+  
+  .footer {
+    padding: 0.1rem 1.5rem 0.1rem;
+    background: var(--card-bg);
+    color: white;
+  }
+  
+  .fa {
+    color: white;
+    margin: 5px
+  }

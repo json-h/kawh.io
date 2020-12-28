@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fantasy Basketball Tools</title>
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    {% block script %}{% endblock script %}
+    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'main/cards.css' %}">
+  </head>
+
+  <body class="site">
+      <!-- START NAV -->
+      <nav class="navbar is-dark">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'index' %}">
+              <img src="{% static 'main/logo.png' %}" alt="kawh.io">
+            </a>
+            <span class="navbar-burger burger" data-target="navbarMenu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item" href="{% url 'index' %}">
+                Home
+              </a>
+              <a class="navbar-item" href="{% url 'import' %}">
+                Import League
+              </a>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  Tools
+                </a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item">
+                    Tool 1
+                  </a>
+                  <a class="navbar-item">
+                    Tool 2
+                  </a>
+                  <a class="navbar-item">
+                    Tool 3
+                  </a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item">
+                    Report an issue
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="field has-addons">
+                  <div class="control">
+                    <input class="input is-small" type="text" placeholder="Player Search">
+                  </div>
+                  <div class="control">
+                      <a class="button is-small">
+                          Search
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- END NAV -->
+    
+      <main class="site-content">
+        {% block content %}{% endblock %}
+      </main>
+    
+      <footer class="footer">
+        <div class="container">
+          <div class="content has-text-centered">
+            <div class="soc">
+              <a href="#"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+  </body>
+
+</html>

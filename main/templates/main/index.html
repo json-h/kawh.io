@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% block script %}{% endblock script %}
+{% block content %}
+  <div class="section">
+    <div class="container">
+      <div class="content has-text-centered">
+        <h1 class="title is-3" style="color: white;">kawh.io</h1>
+        <h2 class="subtitle is-5" style="color: #ff611d">An open-source Fantasy Basketball Wizard.</h2>
+        <br>
+        <p>Only ESPN leagues are supported at the moment. Yahoo implementation is in progress!</p>
+        <br>
+        <a href="{% url 'import' %}" class="button is-medium">Import your league now!</a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
