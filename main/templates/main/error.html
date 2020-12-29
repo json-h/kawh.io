@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block script %}{% endblock script %}
+
+{% block content %}
+    <div class="section">
+        <div class="container">
+            <div class="content has-text-centered">
+            <h1 class="title is-3" style="color: white;">Error</h1>
+            <h2 class="subtitle is-5" style="color: #ff611d">Something went wrong.</h2>
+            <br>
+            <p>{{ error }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

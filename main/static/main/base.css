@@ -26,16 +26,30 @@
     flex: 1;
   }
 
+  .table {
+    background-color: var(--card-bg);
+    color: #ffffff;
+  }
+
+  .content table thead td, .content table thead th {
+    border-width: 0 0 2px;
+    color: #ffffff;
+  }
+
+  .content table th {
+    color: #ffffff;
+}
+
   .box {
     background: var(--card-bg);
   }
   
   .label {
-    color: #ffffff
+    color: #ffffff;
   }
   
   .checkbox {
-    color: #ffffff
+    color: #ffffff;
   }
   
   /* remove with scss */
@@ -73,8 +87,14 @@
   .navbar.is-dark .navbar-start>a.navbar-item:hover {
     background-color: var(--card-bg);
     color: var(--highlight);
-}
+  }
 
+  .button.is-static {
+    color: #ffffff;
+    background-color: var(--highlight);
+    border-width: 0px;
+  }
+  
   .button, 
   .button:focus,
   .button:active {
@@ -88,7 +108,7 @@
     background-color: var(--card-bg);
     border-width: 0px;
   }
-  
+
   /* end remove */
   
   .title.no-padding {

@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fantasy Basketball Tools</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     {% block script %}{% endblock script %}
     <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'main/cards.css' %}">
+    <link rel="stylesheet" href="{% static 'main/base.css' %}">
   </head>
 
   <body class="site">
@@ -61,14 +62,28 @@
               <div class="navbar-item">
                 <div class="field has-addons">
                   <div class="control">
-                    <input class="input is-small" type="text" placeholder="Player Search">
+                    <input class="input is-small" type="text" placeholder="Player Search" id="player_search">
                   </div>
                   <div class="control">
-                      <a class="button is-small">
+                      <a class="button is-small is-static">
                           Search
                       </a>
                   </div>
                 </div>
+                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script>
+                  $(function() {
+                    $("#player_search").autocomplete({
+                      minLength: 2,
+                      source: "{% url 'search' %}",
+                      select: function (event, ui) {
+                          var search_url="{% url 'search' %}?player_name=";
+                          window.location = search_url.concat(ui.item.label);
+                      }
+                    });
+                  });
+                </script>
               </div>
             </div>
           </div>

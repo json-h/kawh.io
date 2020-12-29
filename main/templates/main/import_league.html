@@ -17,36 +17,45 @@
         <div class="column is-4">
           <div class="box">
             
-            <form action="/main/" method="post">
+            <form action="/import/" method="post">
+              
+              {% csrf_token %}
+              {{ form.non_field_errors }}
+              
               <div class="field">
+                {{ form.league_id.errors }}
+                {{ form.league_id.label_tag.as_hidden }}
                 <label class="label">League ID</label>
-                <div class="control">
-                  <input class="input is-small" type="text" placeholder="League ID">
-                </div>
+                {{ form.league_id }}
+                <span class="helptext">{{ form.league_id.help_text }}</span>
               </div>
               
               <br>
+              
               <div class="field">
-                <div class="control">
-                  <label class="checkbox">
-                    <input type="checkbox" onclick="toggleFields()">
-                    Is this a private league?
-                  </label>
-                </div>
+                {{ form.private.errors }}
+                {{ form.private.label_tag.as_hidden }}
+                <label class="checkbox">
+                  {{ form.private }}
+                  Is this league private?
+                </label>
+                <span class="helptext">{{ form.private.help_text }}</span>
               </div>
 
               <div class="field" name="priv" style="display:none">
+                {{ form.espn_s2.errors }}
+                {{ form.espn_s2.label_tag.as_hidden }}
                 <label class="label">ESPN_S2</label>
-                <div class="control">
-                  <input class="input is-small" type="text" placeholder="ESPN_S2">
-                </div>
+                {{ form.espn_s2 }}
+                <span class="helptext">{{ form.espn_s2.help_text }}</span>
               </div>
-              
+
               <div class="field" name="priv" style="display:none">
+                {{ form.swid.errors }}
+                {{ form.swid.label_tag.as_hidden }}
                 <label class="label">SWID</label>
-                <div class="control">
-                  <input class="input is-small" type="text" placeholder="SWID">
-                </div>
+                {{ form.swid }}
+                <span class="helptext">{{ form.swid.help_text }}</span>
               </div>
               
               <br>
@@ -55,6 +64,7 @@
                   <button class="button">Submit</button>
                 </div>
               </div>
+            
             </form>
           
           </div>

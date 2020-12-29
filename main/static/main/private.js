@@ -1,12 +1,16 @@
 function toggleFields () {
-
+    
     var fields = document.getElementsByName("priv");
-    for (field in fields){
-        if (fields[field].style.display === "none") {
-            fields[field].style.display = "block";
-        } else {
-            fields[field].style.display = "none";
+
+    if(document.getElementById("chk").checked){
+        for(i=0; i<2; i++){
+            fields[i].style.display = "block";
+        }
+    }else{
+        for(i=0; i<2; i++){
+            fields[i].style.display = "none";
         }
     }
+    
 
 }
