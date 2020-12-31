@@ -1,0 +1,94 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="section">
+        <div class="container">
+            <div class="content has-text-centered">
+                <h1 class="title" style="color: white;">Select your team</h1>
+                {% for team in teams %}
+                    <div class="box">
+                        <div class="columns">
+                            <div class="column is-2">
+                                <div class="box" style="background: #171f32">
+                                    <img src="{{ team.logo_url }}" alt="" style="max-width: 50%">
+                                    <h1 class="title is-3" style="color: white;">{{ team.name }}</h1>
+                                    <h2 class="subtitle is-5" style="color: white">{{ team.abrv }} <br><br> {{ team.division_name }}</h2>
+                                </div>
+                                <div class="box" style="background: #171f32">
+                                    <a href="{% url 'success' %}?teamId={{ team.team_id }}" class="button">This is my team</a>
+                                </div>
+                            </div>
+                            <div class="column is-10">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th><abbr title="Minutes">MIN</abbr></th>
+                                        <th><abbr title="Field Goals Made">FGM</abbr></th>
+                                        <th><abbr title="Field Goals Attempted">FGA</abbr></th>
+                                        <th><abbr title="Field Goal Percentage">FG%</abbr></th>
+                                        <th><abbr title="Free Throws Made">FTM</abbr></th>
+                                        <th><abbr title="Free Throws Attempted">FTA</abbr></th>
+                                        <th><abbr title="Free Throw Percentage">FT%</abbr></th>
+                                        <th><abbr title="3PT Field Goals Made">3PM</abbr></th>
+                                        <th><abbr title="Points">PTS</abbr></th>
+                                        <th><abbr title="Rebounds">REB</abbr></th>
+                                        <th><abbr title="Assists">AST</abbr></th>
+                                        <th><abbr title="Steals">STL</abbr></th>
+                                        <th><abbr title="Blocks">BLK</abbr></th>
+                                        <th><abbr title="Turnovers">TOV</abbr></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>   
+                                        {% for player in team_players %}
+                                            {% if player.team.team_id == team.team_id %}
+                                                {% if player.player.seasonaverages %}
+                                                    <tr>
+                                                        <th>{{ player.player.full_name }}</th>
+                                                        <td>{{ player.player.seasonaverages.mins }}</td>
+                                                        <td>{{ player.player.seasonaverages.fgm }}</td>
+                                                        <td>{{ player.player.seasonaverages.fga }}</td>
+                                                        <td>{{ player.player.seasonaverages.fgpct }}</td>
+                                                        <td>{{ player.player.seasonaverages.ftm }}</td>
+                                                        <td>{{ player.player.seasonaverages.fta }}</td>
+                                                        <td>{{ player.player.seasonaverages.ftpct }}</td>
+                                                        <td>{{ player.player.seasonaverages.fg3m }}</td>
+                                                        <td>{{ player.player.seasonaverages.pts }}</td>
+                                                        <td>{{ player.player.seasonaverages.reb }}</td>
+                                                        <td>{{ player.player.seasonaverages.ast }}</td>
+                                                        <td>{{ player.player.seasonaverages.stl }}</td>
+                                                        <td>{{ player.player.seasonaverages.blk }}</td>
+                                                        <td>{{ player.player.seasonaverages.tov }}</td>
+                                                    </tr>
+                                                {% else %}
+                                                    <tr>
+                                                        <th>{{ player.player.full_name }}</th>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

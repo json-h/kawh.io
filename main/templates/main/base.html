@@ -36,26 +36,16 @@
               <a class="navbar-item" href="{% url 'import' %}">
                 Import League
               </a>
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                  Tools
+              {% if request.session.leagueId %}
+                <a class="navbar-item" href="{% url 'import' %}">
+                  My League
                 </a>
-                <div class="navbar-dropdown">
-                  <a class="navbar-item">
-                    Tool 1
-                  </a>
-                  <a class="navbar-item">
-                    Tool 2
-                  </a>
-                  <a class="navbar-item">
-                    Tool 3
-                  </a>
-                  <hr class="navbar-divider">
-                  <a class="navbar-item">
-                    Report an issue
-                  </a>
-                </div>
-              </div>
+              {% endif %}
+              {% if request.session.teamId %}
+                <a class="navbar-item" href="{% url 'import' %}">
+                  My Team
+                </a>
+              {% endif %}
             </div>
 
             <div class="navbar-end">

@@ -31,14 +31,10 @@
     color: #ffffff;
   }
 
-  .content table thead td, .content table thead th {
+  .content table th, .content table thead td, .content table thead th {
     border-width: 0 0 2px;
     color: #ffffff;
   }
-
-  .content table th {
-    color: #ffffff;
-}
 
   .box {
     background: var(--card-bg);

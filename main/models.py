@@ -1,15 +1,20 @@
 from django.db import models
 
-class Leagues(models.Model):
-    session_id = models.CharField(primary_key=True, max_length=40)
+class ESPNTeams(models.Model):
+    team_id = models.CharField(max_length=15, primary_key=True)
     league_id = models.CharField(max_length=10)
-    priv = models.BooleanField()
-    espn_s2 = models.CharField(max_length=400)
-    swid = models.CharField(max_length=40)
+    name = models.CharField(max_length=30)
+    abrv = models.CharField(max_length=4)
+    division_name = models.CharField(max_length=25)
+    logo_url = models.CharField(max_length=100)
+
+class ESPNPlayers(models.Model):
+    team = models.ForeignKey('ESPNTeams', on_delete=models.CASCADE)
+    player = models.ForeignKey('Players', on_delete=models.CASCADE)
 
 class Games(models.Model):
     season = models.CharField(max_length=5)
-    player = models.ForeignKey('Players', on_delete=models.CASCADE, db_column="player_id")
+    player = models.ForeignKey('Players', on_delete=models.CASCADE)
     game_id = models.CharField(max_length=15)
     game_date = models.DateField(null=True)
     home_id = models.IntegerField(default=0)
@@ -89,7 +94,7 @@ class LeagueAverage(models.Model):
         db_table = 'league_averages'
 
 class SeasonAverages(models.Model):
-    player = models.ForeignKey('Players', on_delete=models.CASCADE, db_column="player_id")
+    player = models.OneToOneField('Players', on_delete=models.CASCADE)
     gp = models.IntegerField()
     mins = models.DecimalField(max_digits=4, decimal_places=1)
     fgm = models.DecimalField(max_digits=4, decimal_places=1)
