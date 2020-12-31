@@ -15,7 +15,7 @@
   p {
     color: white
   }
-  
+
   .site {
     display: flex;
     min-height: 100vh;
@@ -26,12 +26,16 @@
     flex: 1;
   }
 
+  /* remove with scss? */
+
   .table {
     background-color: var(--card-bg);
     color: #ffffff;
   }
 
-  .content table th, .content table thead td, .content table thead th {
+  .content table th, 
+  .content table thead td, 
+  .content table thead th {
     border-width: 0 0 2px;
     color: #ffffff;
   }
@@ -47,8 +51,6 @@
   .checkbox {
     color: #ffffff;
   }
-  
-  /* remove with scss */
 
   .navbar.is-dark {
     background: var(--card-bg);

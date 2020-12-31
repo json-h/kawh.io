@@ -37,13 +37,8 @@
                 Import League
               </a>
               {% if request.session.leagueId %}
-                <a class="navbar-item" href="{% url 'import' %}">
+                <a class="navbar-item" href="{% url 'league' %}">
                   My League
-                </a>
-              {% endif %}
-              {% if request.session.teamId %}
-                <a class="navbar-item" href="{% url 'import' %}">
-                  My Team
                 </a>
               {% endif %}
             </div>

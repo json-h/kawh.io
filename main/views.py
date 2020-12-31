@@ -8,6 +8,11 @@ from .models import *
 def index(request):
     return render(request, 'main/index.html')
 
+def league(request):
+    league_teams = ESPNTeams.objects.filter(team_id__startswith=request.session['leagueId'])
+    league_players = ESPNPlayers.objects.filter(team__team_id__startswith=request.session['leagueId']).order_by('-player__seasonaverages__mins')
+    return render(request, 'main/league.html', {'teams': league_teams, 'team_players':league_players})
+
 def success(request):
     if 'teamId' in request.GET:
             try:

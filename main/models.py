@@ -14,6 +14,7 @@ class ESPNPlayers(models.Model):
 
 class Games(models.Model):
     season = models.CharField(max_length=5)
+    week = models.IntegerField(default=0)
     player = models.ForeignKey('Players', on_delete=models.CASCADE)
     game_id = models.CharField(max_length=15)
     game_date = models.DateField(null=True)
@@ -115,5 +116,25 @@ class SeasonAverages(models.Model):
         managed = False
         db_table = 'season_averages_9cat'
 
+class ESPNTeamAverages(models.Model):
+    team = models.OneToOneField('ESPNTeams', on_delete=models.CASCADE)
+    mins = models.DecimalField(max_digits=4, decimal_places=1)
+    fgm = models.DecimalField(max_digits=4, decimal_places=1)
+    fga = models.DecimalField(max_digits=4, decimal_places=1)
+    fgpct = models.DecimalField(max_digits=4, decimal_places=3)
+    ftm = models.DecimalField(max_digits=4, decimal_places=1)
+    fta = models.DecimalField(max_digits=4, decimal_places=1)
+    ftpct = models.DecimalField(max_digits=4, decimal_places=3)
+    fg3m = models.DecimalField(max_digits=4, decimal_places=1)
+    pts = models.DecimalField(max_digits=4, decimal_places=1)
+    reb = models.DecimalField(max_digits=4, decimal_places=1)
+    ast = models.DecimalField(max_digits=4, decimal_places=1)
+    stl = models.DecimalField(max_digits=4, decimal_places=1)
+    blk = models.DecimalField(max_digits=4, decimal_places=1)
+    tov = models.DecimalField(max_digits=4, decimal_places=1)
+
+    class Meta:
+        managed = False
+        db_table = 'espn_team_averages'
 
     

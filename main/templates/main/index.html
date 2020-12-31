@@ -1,5 +1,5 @@
 {% extends 'main/base.html' %}
-{% block script %}{% endblock script %}
+
 {% block content %}
   <div class="section">
     <div class="container">
@@ -7,9 +7,40 @@
         <h1 class="title is-3" style="color: white;">kawh.io</h1>
         <h2 class="subtitle is-5" style="color: #ff611d">An open-source Fantasy Basketball Wizard.</h2>
         <br>
-        <p>Only ESPN leagues are supported at the moment. Yahoo implementation is in progress!</p>
-        <br>
-        <a href="{% url 'import' %}" class="button is-medium">Import your league now!</a>
+        {% if not request.session.leagueId %}
+          <p>Yahoo implementation is in progress!</p>
+          <a href="{% url 'import' %}" class="button is-medium">Import your ESPN league</a>
+          <br>
+          <br>
+        {% endif %}
+        <div class="columns">
+          
+          <div class="column">
+            <div class="box">
+              <h1 class="title is-5" style="color: white;">Week Compare</h1>
+              <p>Compare your performance in a certain week to everyone else in your league.</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="box">
+              <h1 class="title is-5" style="color: white;">Tool 2</h1>
+              <p>Yahoo implementation is in progress!</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="box">
+              <h1 class="title is-5" style="color: white;">Tool 3</h1>
+              <p>Yahoo implementation is in progress!</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="box">
+              <h1 class="title is-5" style="color: white;">Tool 4</h1>
+              <p>Yahoo implementation is in progress!</p>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
