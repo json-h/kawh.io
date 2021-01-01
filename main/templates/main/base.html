@@ -44,17 +44,24 @@
             </div>
 
             <div class="navbar-end">
+              {% if request.session.leagueId %}
+                <div class="navbar-item">
+                  <a href="{% url 'refresh' %}" class="button is-small">
+                    Refresh League
+                  </a>
+                </div>
+              {% endif %}
               <div class="navbar-item">
-                <div class="field has-addons">
-                  <div class="control">
+                <a class="field has-addons">
+                  <a class="control">
                     <input class="input is-small" type="text" placeholder="Player Search" id="player_search">
-                  </div>
-                  <div class="control">
+                  </a>
+                  <a class="control">
                       <a class="button is-small is-static">
                           Search
                       </a>
-                  </div>
-                </div>
+                    </a>
+                </a>
                 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
                 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
                 <script>
@@ -84,7 +91,7 @@
         <div class="container">
           <div class="content has-text-centered">
             <div class="soc">
-              <a href="#"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+              <a href="https://github.com/json-h/kawh.io"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>

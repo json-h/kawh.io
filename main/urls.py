@@ -7,6 +7,7 @@ urlpatterns = [
     path('import/', views.import_league, name='import'),
     path('player/<str:p_id>', views.player, name='player'),
     path('search/', views.search, name='search'),
+    path('refresh/', views.refresh, name='refresh'),
     path('success/', views.success, name='success'),
     path('league/', views.league, name='league'),
 ]

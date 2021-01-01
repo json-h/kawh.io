@@ -1,8 +1,14 @@
 from django.db import models
 
+class ESPNLeagues(models.Model):
+    league_id = models.CharField(max_length=10, primary_key=True)
+    priv = models.BooleanField()
+    espn_s2 = models.CharField(max_length=400)
+    swid = models.CharField(max_length=40)
+
 class ESPNTeams(models.Model):
+    league = models.ForeignKey('ESPNLeagues', on_delete=models.CASCADE)
     team_id = models.CharField(max_length=15, primary_key=True)
-    league_id = models.CharField(max_length=10)
     name = models.CharField(max_length=30)
     abrv = models.CharField(max_length=4)
     division_name = models.CharField(max_length=25)
@@ -115,6 +121,27 @@ class SeasonAverages(models.Model):
     class Meta:
         managed = False
         db_table = 'season_averages_9cat'
+
+class StandardDeviations(models.Model):
+    player = models.OneToOneField('Players', on_delete=models.CASCADE)
+    mins = models.DecimalField(max_digits=4, decimal_places=1)
+    fgm = models.DecimalField(max_digits=4, decimal_places=1)
+    fga = models.DecimalField(max_digits=4, decimal_places=1)
+    fgpct = models.DecimalField(max_digits=4, decimal_places=3)
+    ftm = models.DecimalField(max_digits=4, decimal_places=1)
+    fta = models.DecimalField(max_digits=4, decimal_places=1)
+    ftpct = models.DecimalField(max_digits=4, decimal_places=3)
+    fg3m = models.DecimalField(max_digits=4, decimal_places=1)
+    pts = models.DecimalField(max_digits=4, decimal_places=1)
+    reb = models.DecimalField(max_digits=4, decimal_places=1)
+    ast = models.DecimalField(max_digits=4, decimal_places=1)
+    stl = models.DecimalField(max_digits=4, decimal_places=1)
+    blk = models.DecimalField(max_digits=4, decimal_places=1)
+    tov = models.DecimalField(max_digits=4, decimal_places=1)
+
+    class Meta:
+        managed = False
+        db_table = 'standard_deviations'
 
 class ESPNTeamAverages(models.Model):
     team = models.OneToOneField('ESPNTeams', on_delete=models.CASCADE)
