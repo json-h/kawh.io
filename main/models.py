@@ -164,4 +164,22 @@ class ESPNTeamAverages(models.Model):
         managed = False
         db_table = 'espn_team_averages'
 
+class ESPNWeekStatistics(models.Model):
+    week = models.IntegerField()
+    league = models.ForeignKey('ESPNLeagues', on_delete=models.CASCADE)
+    team = models.ForeignKey('ESPNTeams', on_delete=models.CASCADE)
+    fgpct = models.DecimalField(max_digits=4, decimal_places=3)
+    ftpct = models.DecimalField(max_digits=4, decimal_places=3)
+    fg3m = models.IntegerField()
+    pts = models.IntegerField()
+    reb = models.IntegerField()
+    ast = models.IntegerField()
+    stl = models.IntegerField()
+    blk = models.IntegerField()
+    tov = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'week_statistics'
+
     

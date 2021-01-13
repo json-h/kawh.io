@@ -86,6 +86,7 @@ def import_league(request):
 
     return render(request, 'main/import_league.html', {'form': league_data})
 
+
 def player(request, p_id):
     try:
         player_data = Players.objects.get(player_id=p_id)
@@ -100,3 +101,13 @@ def player(request, p_id):
     headshot_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + str(player_data.player_id) + ".png"
     
     return render(request, 'main/player.html', {'player':player_data,'season':season_data,'games':game_data,'picture':headshot_url})
+
+
+def compare(request, week_num):
+    try:
+        week_statistics = ESPNWeekStatistics.objects.filter(league__league_id=request.session['leagueId'], week=week_num)
+    except ESPNWeekStatistics.DoesNotExist as e:
+        return render(request, 'main/error.html', {'error': e})
+    
+    current_weeks = ESPNWeekStatistics.objects.order_by().values('week').distinct()
+    return render(request, 'main/roto.html', {'week_statistics': week_statistics, 'week_num': week_num, 'current_weeks': current_weeks})

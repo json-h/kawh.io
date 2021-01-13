@@ -1,0 +1,74 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="section">
+        <div class="container">
+            <div class="content has-text-centered">
+                <h1 class="title is-8" style="color: white;">Week Comparison</h1>
+                <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span>Week {{ week_num }}</span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                        <div class="dropdown-content" style="background-color: #101727; width: 50%;">
+                            {% for week in current_weeks %}
+                                <div class="dropdown-item">
+                                    <a href="{% url 'compare' week.week %}"><p>Week {{ week.week }}</p></a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="content has-text-centered">
+                    <div class="box">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Team Name</th>
+                                <th><abbr title="Field Goal Percentage">FG%</abbr></th>
+                                <th><abbr title="Free Throw Percentage">FT%</abbr></th>
+                                <th><abbr title="3PT Field Goals Made">3PM</abbr></th>
+                                <th><abbr title="Points">PTS</abbr></th>
+                                <th><abbr title="Rebounds">REB</abbr></th>
+                                <th><abbr title="Assists">AST</abbr></th>
+                                <th><abbr title="Steals">STL</abbr></th>
+                                <th><abbr title="Blocks">BLK</abbr></th>
+                                <th><abbr title="Turnovers">TOV</abbr></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for data in week_statistics %}
+                                    <tr>
+                                        <td>{{ data.team.name }}</td>   
+                                        <td>{{ data.fgpct }}</td>
+                                        <td>{{ data.ftpct }}</td>
+                                        <td>{{ data.fg3m }}</td>
+                                        <td>{{ data.pts }}</td>
+                                        <td>{{ data.reb }}</td>
+                                        <td>{{ data.ast }}</td>
+                                        <td>{{ data.stl }}</td>
+                                        <td>{{ data.blk }}</td>
+                                        <td>{{ data.tov }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="box">
+                        <p>This data is calculated using your current team using our own data, assuming that each player has been activated 
+                            for every game. It is likely not what actually happened in that matchup, and does not take into account waiver 
+                            adds or trades.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

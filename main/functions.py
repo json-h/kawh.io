@@ -1,5 +1,5 @@
 from espn_api.basketball import League
-from main.models import *
+from .models import *
 
 current_season = 2021
 
