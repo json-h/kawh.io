@@ -8,6 +8,11 @@ from .models import *
 def index(request):
     return render(request, 'main/index.html')
 
+def test(request):
+    request.session['leagueId'] = 99158049
+    request.session['teamId'] = 991580491
+    return render(request, 'main/index.html')
+
 def refresh(request):
     if request.session['leagueId']:
         user_league = ESPNLeagues.objects.get(league_id=request.session['leagueId'])

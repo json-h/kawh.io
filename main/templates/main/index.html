@@ -8,8 +8,9 @@
         <h2 class="subtitle is-5" style="color: #ff611d">An open-source Fantasy Basketball Wizard.</h2>
         <br>
         {% if not request.session.leagueId %}
-          <p>Yahoo implementation is in progress!</p>
-          <a href="{% url 'import' %}" class="button is-medium">Import your ESPN league</a>
+          <p>Only ESPN leagues are supported at this time.</p>
+          <a href="{% url 'import' %}" class="button is-medium" style="display: inline-block">Import your ESPN league</a>
+          <a href="{% url 'test' %}" class="button is-medium" style="display: inline-block">Import an example league</a>
           <br>
           <br>
           <br>
