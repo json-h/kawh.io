@@ -3,161 +3,181 @@
 
 {% block content %}
 
-<div class="section">
-    <div class="container">
-        <div class="content has-text-centered">
-            <div class="columns">
-                
-                <div class="column is-3">
-                    <div class="box"> 
-                        <h1 class="title is-3" style="color: white;"> {{ player.full_name }}</h1>   
-                        <img src="{{ picture }}" alt="{% static 'main/placeholder.png' %}">
-                        <h2 class="subtitle is-5" style="color: white">#{{ player.jersey }} {{ player.team.full_name }}</h2>
-                        <p>Position  </p> <p>{{ player.position }}</p>
-                        <p>Years Pro </p> <p>{{ player.years_pro }}</p>
+    {% include 'main/datatable_reqs.html' %}
+
+    <div class="section">
+        <div class="container">
+            <div class="content has-text-centered">
+                <div class="columns">
+                    
+                    <div class="column is-3">
+                        <div class="box"> 
+                            <h1 class="title is-3" style="color: white;"> {{ player.full_name }}</h1>   
+                            <img src="{{ picture }}" alt="{% static 'main/placeholder.png' %}">
+                            <h2 class="subtitle is-5" style="color: white">#{{ player.jersey }} {{ player.team.full_name }} {{ player.position }}</h2>
+                            <p>Years Pro </p> <p>{{ player.years_pro }}</p>
+                        </div>
                     </div>
-                </div>
-            
-                <div class="column is-9">
-                    <div class="box">
-                        <div class="content has-text-centered">
-                            <h1 class="title is-5" style="color: white;">Statistics</h1>
-                            
-                            {% if games %}
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th><abbr title="Games Played">GP</abbr></th>
-                                        <th><abbr title="Minutes">MIN</abbr></th>
-                                        <th><abbr title="Field Goals Made">FGM</abbr></th>
-                                        <th><abbr title="Field Goals Attempted">FGA</abbr></th>
-                                        <th><abbr title="Field Goal Percentage">FG%</abbr></th>
-                                        <th><abbr title="Free Throws Made">FTM</abbr></th>
-                                        <th><abbr title="Free Throws Attempted">FTA</abbr></th>
-                                        <th><abbr title="Free Throw Percentage">FT%</abbr></th>
-                                        <th><abbr title="3PT Field Goals Made">3PM</abbr></th>
-                                        <th><abbr title="Points">PTS</abbr></th>
-                                        <th><abbr title="Rebounds">REB</abbr></th>
-                                        <th><abbr title="Assists">AST</abbr></th>
-                                        <th><abbr title="Steals">STL</abbr></th>
-                                        <th><abbr title="Blocks">BLK</abbr></th>
-                                        <th><abbr title="Turnovers">TOV</abbr></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>   
-                                        <th>{{ season.gp }}</th>
-                                        <td>{{ season.mins }}</td>
-                                        <td>{{ season.fgm }}</td>
-                                        <td>{{ season.fga }}</td>
-                                        <td>{{ season.fgpct }}</td>
-                                        <td>{{ season.ftm }}</td>
-                                        <td>{{ season.fta }}</td>
-                                        <td>{{ season.ftpct }}</td>
-                                        <td>{{ season.fg3m }}</td>
-                                        <td>{{ season.pts }}</td>
-                                        <td>{{ season.reb }}</td>
-                                        <td>{{ season.ast }}</td>
-                                        <td>{{ season.stl }}</td>
-                                        <td>{{ season.blk }}</td>
-                                        <td>{{ season.tov }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <br>
-                                <h1 class="title is-5" style="color: white;">Standard Deviations</h1>
-
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th><abbr title="Minutes">MIN</abbr></th>
-                                        <th><abbr title="Field Goals Made">FGM</abbr></th>
-                                        <th><abbr title="Field Goals Attempted">FGA</abbr></th>
-                                        <th><abbr title="Field Goal Percentage">FG%</abbr></th>
-                                        <th><abbr title="Free Throws Made">FTM</abbr></th>
-                                        <th><abbr title="Free Throws Attempted">FTA</abbr></th>
-                                        <th><abbr title="Free Throw Percentage">FT%</abbr></th>
-                                        <th><abbr title="3PT Field Goals Made">3PM</abbr></th>
-                                        <th><abbr title="Points">PTS</abbr></th>
-                                        <th><abbr title="Rebounds">REB</abbr></th>
-                                        <th><abbr title="Assists">AST</abbr></th>
-                                        <th><abbr title="Steals">STL</abbr></th>
-                                        <th><abbr title="Blocks">BLK</abbr></th>
-                                        <th><abbr title="Turnovers">TOV</abbr></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>   
-                                        <td>{{ player.standarddeviations.mins }}</td>
-                                        <td>{{ player.standarddeviations.fgm }}</td>
-                                        <td>{{ player.standarddeviations.fga }}</td>
-                                        <td>{{ player.standarddeviations.fgpct }}</td>
-                                        <td>{{ player.standarddeviations.ftm }}</td>
-                                        <td>{{ player.standarddeviations.fta }}</td>
-                                        <td>{{ player.standarddeviations.ftpct }}</td>
-                                        <td>{{ player.standarddeviations.fg3m }}</td>
-                                        <td>{{ player.standarddeviations.pts }}</td>
-                                        <td>{{ player.standarddeviations.reb }}</td>
-                                        <td>{{ player.standarddeviations.ast }}</td>
-                                        <td>{{ player.standarddeviations.stl }}</td>
-                                        <td>{{ player.standarddeviations.blk }}</td>
-                                        <td>{{ player.standarddeviations.tov }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <br>
-                                <h1 class="title is-5" style="color: white;">Game Log</h1>
+                
+                    <div class="column is-9">
+                        <div class="box">
+                            <div class="content has-text-centered">
+                                <h1 class="title is-5" style="color: white;">Statistics</h1>
                                 
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th><abbr title="Minutes">MIN</abbr></th>
-                                        <th><abbr title="Field Goals Made">FG</abbr></th>
-                                        <th><abbr title="Field Goals Attempted">FG%</abbr></th>
-                                        <th><abbr title="3PT Field Goals Made">3P</abbr></th>
-                                        <th><abbr title="3PT Field Goals Attempted">3P%</abbr></th>
-                                        <th><abbr title="Free Throws Made">FT</abbr></th>
-                                        <th><abbr title="Free Throws Attempted">FT%</abbr></th>
-                                        <th><abbr title="Points">PTS</abbr></th>
-                                        <th><abbr title="Rebounds">REB</abbr></th>
-                                        <th><abbr title="Assists">AST</abbr></th>
-                                        <th><abbr title="Steals">STL</abbr></th>
-                                        <th><abbr title="Blocks">BLK</abbr></th>
-                                        <th><abbr title="Turnovers">TOV</abbr></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for game in games %}
-                                            <tr>   
-                                                <td>{{ game.game_date }}</td>
-                                                <td>{{ game.mins }}</td>
-                                                <td>{{ game.fgm }}-{{ game.fga }}</td>
-                                                <td>{{ game.fgpct }}</td>
-                                                <td>{{ game.fg3m }}-{{ game.fg3a }}</td>
-                                                <td>{{ game.fg3pct }}</td>
-                                                <td>{{ game.ftm }}-{{ game.fta }}</td>
-                                                <td>{{ game.ftpct }}</td>                                            
-                                                <td>{{ game.pts }}</td>
-                                                <td>{{ game.tot_reb }}</td>
-                                                <td>{{ game.ast }}</td>
-                                                <td>{{ game.stl }}</td>
-                                                <td>{{ game.blk }}</td>
-                                                <td>{{ game.tov }}</td>
-                                            </tr>
-                                        {% endfor %}
+                                {% if games %}
+                                    <table class="table is-narrow">
+                                        <thead>
+                                        <tr>
+                                            <th><abbr title="Games Played">GP</abbr></th>
+                                            <th><abbr title="Minutes">MIN</abbr></th>
+                                            <th><abbr title="Field Goals Made">FGM</abbr></th>
+                                            <th><abbr title="Field Goals Attempted">FGA</abbr></th>
+                                            <th><abbr title="Field Goal Percentage">FG%</abbr></th>
+                                            <th><abbr title="Free Throws Made">FTM</abbr></th>
+                                            <th><abbr title="Free Throws Attempted">FTA</abbr></th>
+                                            <th><abbr title="Free Throw Percentage">FT%</abbr></th>
+                                            <th><abbr title="3PT Field Goals Made">3PM</abbr></th>
+                                            <th><abbr title="Points">PTS</abbr></th>
+                                            <th><abbr title="Rebounds">REB</abbr></th>
+                                            <th><abbr title="Assists">AST</abbr></th>
+                                            <th><abbr title="Steals">STL</abbr></th>
+                                            <th><abbr title="Blocks">BLK</abbr></th>
+                                            <th><abbr title="Turnovers">TOV</abbr></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>   
+                                            <th>{{ season.gp }}</th>
+                                            <td>{{ season.mins }}</td>
+                                            <td>{{ season.fgm }}</td>
+                                            <td>{{ season.fga }}</td>
+                                            <td>{{ season.fgpct }}</td>
+                                            <td>{{ season.ftm }}</td>
+                                            <td>{{ season.fta }}</td>
+                                            <td>{{ season.ftpct }}</td>
+                                            <td>{{ season.fg3m }}</td>
+                                            <td>{{ season.pts }}</td>
+                                            <td>{{ season.reb }}</td>
+                                            <td>{{ season.ast }}</td>
+                                            <td>{{ season.stl }}</td>
+                                            <td>{{ season.blk }}</td>
+                                            <td>{{ season.tov }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <h1 class="title is-5" style="color: white;">Standard Deviation</h1>
 
-                                    </tbody>
-                                </table>
-                            {% else %}
-                                <p>No games played this season.</p>
-                            {% endif %}
-                        
+                                    <table class="table is-narrow">
+                                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th><abbr title="Minutes">MIN</abbr></th>
+                                            <th><abbr title="Field Goals Made">FGM</abbr></th>
+                                            <th><abbr title="Field Goals Attempted">FGA</abbr></th>
+                                            <th><abbr title="Field Goal Percentage">FG%</abbr></th>
+                                            <th><abbr title="Free Throws Made">FTM</abbr></th>
+                                            <th><abbr title="Free Throws Attempted">FTA</abbr></th>
+                                            <th><abbr title="Free Throw Percentage">FT%</abbr></th>
+                                            <th><abbr title="3PT Field Goals Made">3PM</abbr></th>
+                                            <th><abbr title="Points">PTS</abbr></th>
+                                            <th><abbr title="Rebounds">REB</abbr></th>
+                                            <th><abbr title="Assists">AST</abbr></th>
+                                            <th><abbr title="Steals">STL</abbr></th>
+                                            <th><abbr title="Blocks">BLK</abbr></th>
+                                            <th><abbr title="Turnovers">TOV</abbr></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>   
+                                            <td>{{ player.full_name }}</td>
+                                            <td>{{ player.standarddeviations.mins }}</td>
+                                            <td>{{ player.standarddeviations.fgm }}</td>
+                                            <td>{{ player.standarddeviations.fga }}</td>
+                                            <td>{{ player.standarddeviations.fgpct }}</td>
+                                            <td>{{ player.standarddeviations.ftm }}</td>
+                                            <td>{{ player.standarddeviations.fta }}</td>
+                                            <td>{{ player.standarddeviations.ftpct }}</td>
+                                            <td>{{ player.standarddeviations.fg3m }}</td>
+                                            <td>{{ player.standarddeviations.pts }}</td>
+                                            <td>{{ player.standarddeviations.reb }}</td>
+                                            <td>{{ player.standarddeviations.ast }}</td>
+                                            <td>{{ player.standarddeviations.stl }}</td>
+                                            <td>{{ player.standarddeviations.blk }}</td>
+                                            <td>{{ player.standarddeviations.tov }}</td>
+                                        </tr>
+                                        <tr>   
+                                            <td><abbr title=">= 10 GP">League Average</abbr></td>
+                                            <td>{{ league_avg_sd.mins }}</td>
+                                            <td>{{ league_avg_sd.fgm }}</td>
+                                            <td>{{ league_avg_sd.fga }}</td>
+                                            <td>{{ league_avg_sd.fgpct }}</td>
+                                            <td>{{ league_avg_sd.ftm }}</td>
+                                            <td>{{ league_avg_sd.fta }}</td>
+                                            <td>{{ league_avg_sd.ftpct }}</td>
+                                            <td>{{ league_avg_sd.fg3m }}</td>
+                                            <td>{{ league_avg_sd.pts }}</td>
+                                            <td>{{ league_avg_sd.reb }}</td>
+                                            <td>{{ league_avg_sd.ast }}</td>
+                                            <td>{{ league_avg_sd.stl }}</td>
+                                            <td>{{ league_avg_sd.blk }}</td>
+                                            <td>{{ league_avg_sd.tov }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <h1 class="title is-5" style="color: white;">Game Log</h1>
+                                    
+                                    <table class="table has-page is-narrow">
+                                        <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th><abbr title="Minutes">MIN</abbr></th>
+                                            <th><abbr title="Field Goals Made">FG</abbr></th>
+                                            <th><abbr title="Field Goals Attempted">FG%</abbr></th>
+                                            <th><abbr title="3PT Field Goals Made">3P</abbr></th>
+                                            <th><abbr title="3PT Field Goals Attempted">3P%</abbr></th>
+                                            <th><abbr title="Free Throws Made">FT</abbr></th>
+                                            <th><abbr title="Free Throws Attempted">FT%</abbr></th>
+                                            <th><abbr title="Points">PTS</abbr></th>
+                                            <th><abbr title="Rebounds">REB</abbr></th>
+                                            <th><abbr title="Assists">AST</abbr></th>
+                                            <th><abbr title="Steals">STL</abbr></th>
+                                            <th><abbr title="Blocks">BLK</abbr></th>
+                                            <th><abbr title="Turnovers">TOV</abbr></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for game in games %}
+                                                <tr>   
+                                                    <td><a href="https://www.nba.com/game/{{ game.game_id }}" style="color:#ff611d">{{ game.game_date | date:'m-d'}}</a></td>
+                                                    <td>{{ game.mins }}</td>
+                                                    <td>{{ game.fgm }}-{{ game.fga }}</td>
+                                                    <td>{{ game.fgpct }}</td>
+                                                    <td>{{ game.fg3m }}-{{ game.fg3a }}</td>
+                                                    <td>{{ game.fg3pct }}</td>
+                                                    <td>{{ game.ftm }}-{{ game.fta }}</td>
+                                                    <td>{{ game.ftpct }}</td>                                            
+                                                    <td>{{ game.pts }}</td>
+                                                    <td>{{ game.tot_reb }}</td>
+                                                    <td>{{ game.ast }}</td>
+                                                    <td>{{ game.stl }}</td>
+                                                    <td>{{ game.blk }}</td>
+                                                    <td>{{ game.tov }}</td>
+                                                </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    <p>No games played this season.</p>
+                                {% endif %}
+                            
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock content %}

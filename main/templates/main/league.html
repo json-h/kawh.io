@@ -2,6 +2,9 @@
 {% load static %}
 
 {% block content %}
+
+    {% include 'main/datatable_reqs.html' %}
+
     <div class="section">
         <div class="container">
             <div class="content has-text-centered">
@@ -17,47 +20,66 @@
                                 </div>
                             </div>
                             <div class="column is-10">
-                                <h1 class="title is-5" style="color: white;">Team Averages</h1>
-                                <table class="table">
+                                <h1 class="title is-5" style="color: white;">Team Statistics</h1>
+                                <table class="table is-narrow">
                                     <thead>
-                                    <tr>
-                                        <th><abbr title="Minutes">MIN</abbr></th>
-                                        <th><abbr title="Field Goals Made">FGM</abbr></th>
-                                        <th><abbr title="Field Goals Attempted">FGA</abbr></th>
-                                        <th><abbr title="Field Goal Percentage">FG%</abbr></th>
-                                        <th><abbr title="Free Throws Made">FTM</abbr></th>
-                                        <th><abbr title="Free Throws Attempted">FTA</abbr></th>
-                                        <th><abbr title="Free Throw Percentage">FT%</abbr></th>
-                                        <th><abbr title="3PT Field Goals Made">3PM</abbr></th>
-                                        <th><abbr title="Points">PTS</abbr></th>
-                                        <th><abbr title="Rebounds">REB</abbr></th>
-                                        <th><abbr title="Assists">AST</abbr></th>
-                                        <th><abbr title="Steals">STL</abbr></th>
-                                        <th><abbr title="Blocks">BLK</abbr></th>
-                                        <th><abbr title="Turnovers">TOV</abbr></th>
-                                    </tr>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th><abbr title="Minutes">MIN</abbr></th>
+                                            <th><abbr title="Field Goals Made">FGM</abbr></th>
+                                            <th><abbr title="Field Goals Attempted">FGA</abbr></th>
+                                            <th><abbr title="Field Goal Percentage">FG%</abbr></th>
+                                            <th><abbr title="Free Throws Made">FTM</abbr></th>
+                                            <th><abbr title="Free Throws Attempted">FTA</abbr></th>
+                                            <th><abbr title="Free Throw Percentage">FT%</abbr></th>
+                                            <th><abbr title="3PT Field Goals Made">3PM</abbr></th>
+                                            <th><abbr title="Points">PTS</abbr></th>
+                                            <th><abbr title="Rebounds">REB</abbr></th>
+                                            <th><abbr title="Assists">AST</abbr></th>
+                                            <th><abbr title="Steals">STL</abbr></th>
+                                            <th><abbr title="Blocks">BLK</abbr></th>
+                                            <th><abbr title="Turnovers">TOV</abbr></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>   
-                                        <td>{{ team.espnteamaverages.mins }}</td>
-                                        <td>{{ team.espnteamaverages.fgm }}</td>
-                                        <td>{{ team.espnteamaverages.fga }}</td>
-                                        <td>{{ team.espnteamaverages.fgpct }}</td>
-                                        <td>{{ team.espnteamaverages.ftm }}</td>
-                                        <td>{{ team.espnteamaverages.fta }}</td>
-                                        <td>{{ team.espnteamaverages.ftpct }}</td>
-                                        <td>{{ team.espnteamaverages.fg3m }}</td>
-                                        <td>{{ team.espnteamaverages.pts }}</td>
-                                        <td>{{ team.espnteamaverages.reb }}</td>
-                                        <td>{{ team.espnteamaverages.ast }}</td>
-                                        <td>{{ team.espnteamaverages.stl }}</td>
-                                        <td>{{ team.espnteamaverages.blk }}</td>
-                                        <td>{{ team.espnteamaverages.tov }}</td>
-                                    </tr>
+                                        <tr>   
+                                            <td>Average</td>
+                                            <td>{{ team.espnteamaverages.mins }}</td>
+                                            <td>{{ team.espnteamaverages.fgm }}</td>
+                                            <td>{{ team.espnteamaverages.fga }}</td>
+                                            <td>{{ team.espnteamaverages.fgpct }}</td>
+                                            <td>{{ team.espnteamaverages.ftm }}</td>
+                                            <td>{{ team.espnteamaverages.fta }}</td>
+                                            <td>{{ team.espnteamaverages.ftpct }}</td>
+                                            <td>{{ team.espnteamaverages.fg3m }}</td>
+                                            <td>{{ team.espnteamaverages.pts }}</td>
+                                            <td>{{ team.espnteamaverages.reb }}</td>
+                                            <td>{{ team.espnteamaverages.ast }}</td>
+                                            <td>{{ team.espnteamaverages.stl }}</td>
+                                            <td>{{ team.espnteamaverages.blk }}</td>
+                                            <td>{{ team.espnteamaverages.tov }}</td>
+                                        </tr>
+                                        <tr>   
+                                            <td>Standard Deviation</td>
+                                            <td>{{ team.espnteamstandarddeviations.mins }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.fgm }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.fga }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.fgpct }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.ftm }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.fta }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.ftpct }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.fg3m }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.pts }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.reb }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.ast }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.stl }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.blk }}</td>
+                                            <td>{{ team.espnteamstandarddeviations.tov }}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <h1 class="title is-5" style="color: white;">Players</h1>
-                                <table class="table">
+                                <table class="table no-page is-narrow">
                                     <thead>
                                     <tr>
                                         <th>Name</th>
@@ -82,7 +104,7 @@
                                             {% if player.team.team_id == team.team_id %}
                                                 {% if player.player.seasonaverages %}
                                                     <tr>
-                                                        <td><a href="{% url 'player' p_id=player.player.player_id %}" style="color:#ff611d">{{ player.player.full_name }}</a></td>
+                                                        <td><a href="{% url 'player' p_id=player.player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.player.full_name }}</a></td>
                                                         <td>{{ player.player.seasonaverages.mins }}</td>
                                                         <td>{{ player.player.seasonaverages.fgm }}</td>
                                                         <td>{{ player.player.seasonaverages.fga }}</td>
@@ -100,7 +122,7 @@
                                                     </tr>
                                                 {% else %}
                                                     <tr>
-                                                        <td><a href="{% url 'player' p_id='{{ player.player.player_id }}' %}" style="color:#ff611d">{{ player.player.full_name }}</a></td>
+                                                        <td><a href="{% url 'player' p_id=player.player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.player.full_name }}</a></td>
                                                         <td>0</td>
                                                         <td>0</td>
                                                         <td>0</td>

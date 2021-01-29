@@ -143,6 +143,26 @@ class StandardDeviations(models.Model):
         managed = False
         db_table = 'standard_deviations'
 
+class LeagueAverageStandardDeviation(models.Model):
+    mins = models.DecimalField(max_digits=4, decimal_places=1)
+    fgm = models.DecimalField(max_digits=4, decimal_places=1)
+    fga = models.DecimalField(max_digits=4, decimal_places=1)
+    fgpct = models.DecimalField(max_digits=4, decimal_places=3)
+    ftm = models.DecimalField(max_digits=4, decimal_places=1)
+    fta = models.DecimalField(max_digits=4, decimal_places=1)
+    ftpct = models.DecimalField(max_digits=4, decimal_places=3)
+    fg3m = models.DecimalField(max_digits=4, decimal_places=1)
+    pts = models.DecimalField(max_digits=4, decimal_places=1)
+    reb = models.DecimalField(max_digits=4, decimal_places=1)
+    ast = models.DecimalField(max_digits=4, decimal_places=1)
+    stl = models.DecimalField(max_digits=4, decimal_places=1)
+    blk = models.DecimalField(max_digits=4, decimal_places=1)
+    tov = models.DecimalField(max_digits=4, decimal_places=1)
+
+    class Meta:
+        managed = False
+        db_table = 'league_average_stddev'
+
 class ESPNTeamAverages(models.Model):
     team = models.OneToOneField('ESPNTeams', on_delete=models.CASCADE)
     mins = models.DecimalField(max_digits=4, decimal_places=1)
@@ -163,6 +183,27 @@ class ESPNTeamAverages(models.Model):
     class Meta:
         managed = False
         db_table = 'espn_team_averages'
+
+class ESPNTeamStandardDeviations(models.Model):
+    team = models.OneToOneField('ESPNTeams', on_delete=models.CASCADE)
+    mins = models.DecimalField(max_digits=4, decimal_places=1)
+    fgm = models.DecimalField(max_digits=4, decimal_places=1)
+    fga = models.DecimalField(max_digits=4, decimal_places=1)
+    fgpct = models.DecimalField(max_digits=4, decimal_places=3)
+    ftm = models.DecimalField(max_digits=4, decimal_places=1)
+    fta = models.DecimalField(max_digits=4, decimal_places=1)
+    ftpct = models.DecimalField(max_digits=4, decimal_places=3)
+    fg3m = models.DecimalField(max_digits=4, decimal_places=1)
+    pts = models.DecimalField(max_digits=4, decimal_places=1)
+    reb = models.DecimalField(max_digits=4, decimal_places=1)
+    ast = models.DecimalField(max_digits=4, decimal_places=1)
+    stl = models.DecimalField(max_digits=4, decimal_places=1)
+    blk = models.DecimalField(max_digits=4, decimal_places=1)
+    tov = models.DecimalField(max_digits=4, decimal_places=1)
+
+    class Meta:
+        managed = False
+        db_table = 'espn_team_stddev'
 
 class ESPNWeekStatistics(models.Model):
     week = models.IntegerField()

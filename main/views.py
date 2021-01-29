@@ -13,7 +13,7 @@ def refresh(request):
         user_league = ESPNLeagues.objects.get(league_id=request.session['leagueId'])
         espn_league = get_espn_league(user_league.league_id, current_season, user_league.priv, user_league.espn_s2, user_league.swid)
         if not espn_league.teams:
-            return render(request, 'main/error.html', {'error': league})
+            return render(request, 'main/error.html', {'error': espn_league})
         else:
             create_league(user_league, espn_league)
         return HttpResponseRedirect(reverse('index'))
@@ -40,7 +40,7 @@ def success(request):
 
 def search(request):
     if 'term' in request.GET:
-        players = Players.objects.filter(full_name__istartswith=request.GET.get('term'))
+        players = Players.objects.filter(full_name__icontains=request.GET.get('term'))
         suggest = list()
         for player in players:
             suggest.append(player.full_name)
@@ -65,8 +65,8 @@ def import_league(request):
 
         espn_league = get_espn_league(user_league_id, current_season, user_priv, user_espn_s2, user_swid)
         
-        if not espn_league.teams:
-            return render(request, 'main/error.html', {'error': league})
+        if not hasattr(espn_league, 'teams'):
+            return render(request, 'main/error.html', {'error': "Couldn't retrive this league. Check if it is private or if you have the correct values."})
         else:
             user_league, created = ESPNLeagues.objects.update_or_create(
                 league_id=user_league_id,
@@ -92,6 +92,7 @@ def player(request, p_id):
         player_data = Players.objects.get(player_id=p_id)
         game_data = Games.objects.filter(player__player_id=player_data.player_id).order_by('-game_date')
         season_data = SeasonAverages.objects.filter(player__player_id=player_data.player_id).first()
+        league_stddev = LeagueAverageStandardDeviation.objects.get()
     except Players.DoesNotExist as e:
         return render(request, 'main/error.html', {'error': e})
     except Games.DoesNotExist as e:
@@ -100,7 +101,14 @@ def player(request, p_id):
 
     headshot_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/" + str(player_data.player_id) + ".png"
     
-    return render(request, 'main/player.html', {'player':player_data,'season':season_data,'games':game_data,'picture':headshot_url})
+    return render(request, 'main/player.html', {
+            'player':player_data,
+            'season':season_data,
+            'games':game_data, 
+            'league_avg_stddev': league_stddev, 
+            'picture':headshot_url
+        }
+    )
 
 
 def compare(request, week_num):
@@ -110,4 +118,9 @@ def compare(request, week_num):
         return render(request, 'main/error.html', {'error': e})
     
     current_weeks = ESPNWeekStatistics.objects.order_by().values('week').distinct()
-    return render(request, 'main/roto.html', {'week_statistics': week_statistics, 'week_num': week_num, 'current_weeks': current_weeks})
+    return render(request, 'main/roto.html', {
+            'week_statistics': week_statistics, 
+            'week_num': week_num, 
+            'current_weeks': current_weeks
+        }
+    )

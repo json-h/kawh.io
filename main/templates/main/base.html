@@ -9,9 +9,12 @@
     <title>Fantasy Basketball Tools</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-    {% block script %}{% endblock script %}
-    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'main/base.css' %}">
+    <link rel="stylesheet" href="{% static 'main/datatables.css' %}">
+    {% block script %}{% endblock script %}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="{% static 'main/datatables.js' %}"></script>
+    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="site">

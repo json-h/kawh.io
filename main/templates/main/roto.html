@@ -2,6 +2,9 @@
 {% load static %}
 
 {% block content %}
+
+    {% include 'main/datatable_reqs.html' %}
+    
     <div class="section">
         <div class="container">
             <div class="content has-text-centered">
@@ -16,7 +19,7 @@
                         </button>
                     </div>
                     <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                        <div class="dropdown-content" style="background-color: #101727; width: 50%;">
+                        <div class="dropdown-content" style="background-color: #101727; width: 54%;">
                             {% for week in current_weeks %}
                                 <div class="dropdown-item">
                                     <a href="{% url 'compare' week.week %}"><p>Week {{ week.week }}</p></a>
@@ -28,7 +31,7 @@
             </div>
                 <div class="content has-text-centered">
                     <div class="box">
-                        <table class="table">
+                        <table class="table no-page is-narrow">
                             <thead>
                             <tr>
                                 <th>Team Name</th>
@@ -46,7 +49,13 @@
                             <tbody>
                                 {% for data in week_statistics %}
                                     <tr>
-                                        <td>{{ data.team.name }}</td>   
+                                        <td>
+                                            {% if request.session.teamId == data.team.team_id %} 
+                                                {{ data.team.name }} (You)
+                                            {% else %}
+                                                {{ data.team.name }}
+                                            {% endif %}
+                                        </td>   
                                         <td>{{ data.fgpct }}</td>
                                         <td>{{ data.ftpct }}</td>
                                         <td>{{ data.fg3m }}</td>
