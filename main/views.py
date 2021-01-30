@@ -115,6 +115,18 @@ def player(request, p_id):
         }
     )
 
+def players_list(request, stat):
+    
+    try:
+        player_data = Players.objects.all()
+    except Players.DoesNotExist as e:
+        return render(request, 'main/error.html', {'error': e})
+    
+    if stat not in ["avg", "std"]:
+        return render(request, 'main/error.html')
+
+    return render(request, 'main/players_list.html', {'players':player_data, 'statistic_type':stat})
+
 
 def compare(request, week_num):
     try:

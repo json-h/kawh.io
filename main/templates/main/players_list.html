@@ -1,0 +1,118 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% include 'main/datatable_reqs.html' %}
+    
+    <div class="section">
+        <div class="container">
+            <div class="content has-text-centered">
+                <h1 class="title is-8" style="color: white;">All Players</h1>
+                <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span>
+                                {% if statistic_type == 'avg' %}
+                                    Season Averages
+                                {% elif statistic_type == 'std' %}
+                                    Std. Deviation (>=10GP)
+                                {% endif %}
+                            </span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                        <div class="dropdown-content" style="background-color: #101727;">
+                                <div class="dropdown-item">
+                                    <a href="{% url 'players-list' 'avg' %}"><p>Season Averages</p></a>
+                                </div>
+                                <div class="dropdown-item">
+                                    <a href="{% url 'players-list' 'std' %}"><p>Std. Deviation (>=10GP)</p></a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="content has-text-centered">
+                    <div class="box">
+                        {% if statistic_type == 'avg' %}
+                            <table id="all-players-avg" class="table is-narrow">
+                        {% elif statistic_type == 'std' %}
+                            <table id="all-players-std" class="table is-narrow">
+                        {% endif %}
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th><abbr title="Position">POS</abbr></th>
+                                        <th><abbr title="Games Played">GP</abbr></th>
+                                        <th><abbr title="Minutes">MIN</abbr></th>
+                                        <th><abbr title="Field Goals Made">FGM</abbr></th>
+                                        <th><abbr title="Field Goals Attempted">FGA</abbr></th>
+                                        <th><abbr title="Field Goal Percentage">FG%</abbr></th>
+                                        <th><abbr title="Free Throws Made">FTM</abbr></th>
+                                        <th><abbr title="Free Throws Attempted">FTA</abbr></th>
+                                        <th><abbr title="Free Throw Percentage">FT%</abbr></th>
+                                        <th><abbr title="3PT Field Goals Made">3PM</abbr></th>
+                                        <th><abbr title="Points">PTS</abbr></th>
+                                        <th><abbr title="Rebounds">REB</abbr></th>
+                                        <th><abbr title="Assists">AST</abbr></th>
+                                        <th><abbr title="Steals">STL</abbr></th>
+                                        <th><abbr title="Blocks">BLK</abbr></th>
+                                        <th><abbr title="Turnovers">TOV</abbr></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for player in players %}
+                                        {% if player.seasonaverages and statistic_type == 'avg' %}
+                                            <tr>
+                                                <td><a href="{% url 'player' p_id=player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.full_name }}</a></td>
+                                                <td>{{ player.position }}</td>
+                                                <td>{{ player.seasonaverages.gp }}</td>
+                                                <td>{{ player.seasonaverages.mins }}</td>
+                                                <td>{{ player.seasonaverages.fgm }}</td>
+                                                <td>{{ player.seasonaverages.fga }}</td>
+                                                <td>{{ player.seasonaverages.fgpct }}</td>
+                                                <td>{{ player.seasonaverages.ftm }}</td>
+                                                <td>{{ player.seasonaverages.fta }}</td>
+                                                <td>{{ player.seasonaverages.ftpct }}</td>
+                                                <td>{{ player.seasonaverages.fg3m }}</td>
+                                                <td>{{ player.seasonaverages.pts }}</td>
+                                                <td>{{ player.seasonaverages.reb }}</td>
+                                                <td>{{ player.seasonaverages.ast }}</td>
+                                                <td>{{ player.seasonaverages.stl }}</td>
+                                                <td>{{ player.seasonaverages.blk }}</td>
+                                                <td>{{ player.seasonaverages.tov }}</td>
+                                            </tr>
+                                        {% elif player.standarddeviations and statistic_type == 'std' and player.seasonaverages.gp >= 10 %}
+                                            <tr>
+                                                <td><a href="{% url 'player' p_id=player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.full_name }}</a></td>
+                                                <td>{{ player.position }}</td>
+                                                <td>{{ player.seasonaverages.gp }}</td>
+                                                <td>{{ player.standarddeviations.mins }}</td>
+                                                <td>{{ player.standarddeviations.fgm }}</td>
+                                                <td>{{ player.standarddeviations.fga }}</td>
+                                                <td>{{ player.standarddeviations.fgpct }}</td>
+                                                <td>{{ player.standarddeviations.ftm }}</td>
+                                                <td>{{ player.standarddeviations.fta }}</td>
+                                                <td>{{ player.standarddeviations.ftpct }}</td>
+                                                <td>{{ player.standarddeviations.fg3m }}</td>
+                                                <td>{{ player.standarddeviations.pts }}</td>
+                                                <td>{{ player.standarddeviations.reb }}</td>
+                                                <td>{{ player.standarddeviations.ast }}</td>
+                                                <td>{{ player.standarddeviations.stl }}</td>
+                                                <td>{{ player.standarddeviations.blk }}</td>
+                                                <td>{{ player.standarddeviations.tov }}</td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
