@@ -13,8 +13,8 @@ Made with the help of:
 
 - ~~Week comparisons~~ ✅
 - ~~More player and team statistics~~ ✅
+- ~~Full players list~~ ✅
 - Yahoo implementation ⌛
-- Full players list ⌛
 
 
 
