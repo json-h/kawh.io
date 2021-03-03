@@ -66,46 +66,50 @@
                                 </thead>
                                 <tbody>
                                     {% for player in players %}
-                                        {% if player.seasonaverages and statistic_type == 'avg' %}
-                                            <tr>
-                                                <td><a href="{% url 'player' p_id=player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.full_name }}</a></td>
-                                                <td>{{ player.position }}</td>
-                                                <td>{{ player.seasonaverages.gp }}</td>
-                                                <td>{{ player.seasonaverages.mins }}</td>
-                                                <td>{{ player.seasonaverages.fgm }}</td>
-                                                <td>{{ player.seasonaverages.fga }}</td>
-                                                <td>{{ player.seasonaverages.fgpct }}</td>
-                                                <td>{{ player.seasonaverages.ftm }}</td>
-                                                <td>{{ player.seasonaverages.fta }}</td>
-                                                <td>{{ player.seasonaverages.ftpct }}</td>
-                                                <td>{{ player.seasonaverages.fg3m }}</td>
-                                                <td>{{ player.seasonaverages.pts }}</td>
-                                                <td>{{ player.seasonaverages.reb }}</td>
-                                                <td>{{ player.seasonaverages.ast }}</td>
-                                                <td>{{ player.seasonaverages.stl }}</td>
-                                                <td>{{ player.seasonaverages.blk }}</td>
-                                                <td>{{ player.seasonaverages.tov }}</td>
-                                            </tr>
-                                        {% elif player.standarddeviations and statistic_type == 'std' and player.seasonaverages.gp >= 10 %}
-                                            <tr>
-                                                <td><a href="{% url 'player' p_id=player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.full_name }}</a></td>
-                                                <td>{{ player.position }}</td>
-                                                <td>{{ player.seasonaverages.gp }}</td>
-                                                <td>{{ player.standarddeviations.mins }}</td>
-                                                <td>{{ player.standarddeviations.fgm }}</td>
-                                                <td>{{ player.standarddeviations.fga }}</td>
-                                                <td>{{ player.standarddeviations.fgpct }}</td>
-                                                <td>{{ player.standarddeviations.ftm }}</td>
-                                                <td>{{ player.standarddeviations.fta }}</td>
-                                                <td>{{ player.standarddeviations.ftpct }}</td>
-                                                <td>{{ player.standarddeviations.fg3m }}</td>
-                                                <td>{{ player.standarddeviations.pts }}</td>
-                                                <td>{{ player.standarddeviations.reb }}</td>
-                                                <td>{{ player.standarddeviations.ast }}</td>
-                                                <td>{{ player.standarddeviations.stl }}</td>
-                                                <td>{{ player.standarddeviations.blk }}</td>
-                                                <td>{{ player.standarddeviations.tov }}</td>
-                                            </tr>
+                                        {% if statistic_type == 'avg' %}
+                                            {% if player.seasonaverages %}
+                                                <tr>
+                                                    <td><a href="{% url 'player' p_id=player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.full_name }}</a></td>
+                                                    <td>{{ player.position }}</td>
+                                                    <td>{{ player.seasonaverages.gp }}</td>
+                                                    <td>{{ player.seasonaverages.mins }}</td>
+                                                    <td>{{ player.seasonaverages.fgm }}</td>
+                                                    <td>{{ player.seasonaverages.fga }}</td>
+                                                    <td>{{ player.seasonaverages.fgpct }}</td>
+                                                    <td>{{ player.seasonaverages.ftm }}</td>
+                                                    <td>{{ player.seasonaverages.fta }}</td>
+                                                    <td>{{ player.seasonaverages.ftpct }}</td>
+                                                    <td>{{ player.seasonaverages.fg3m }}</td>
+                                                    <td>{{ player.seasonaverages.pts }}</td>
+                                                    <td>{{ player.seasonaverages.reb }}</td>
+                                                    <td>{{ player.seasonaverages.ast }}</td>
+                                                    <td>{{ player.seasonaverages.stl }}</td>
+                                                    <td>{{ player.seasonaverages.blk }}</td>
+                                                    <td>{{ player.seasonaverages.tov }}</td>
+                                                </tr>
+                                            {% endif %}
+                                        {% elif statistic_type == 'std'%}
+                                            {% if player.standarddeviations and player.seasonaverages.gp >= 10 %}
+                                                <tr>
+                                                    <td><a href="{% url 'player' p_id=player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.full_name }}</a></td>
+                                                    <td>{{ player.position }}</td>
+                                                    <td>{{ player.seasonaverages.gp }}</td>
+                                                    <td>{{ player.standarddeviations.mins }}</td>
+                                                    <td>{{ player.standarddeviations.fgm }}</td>
+                                                    <td>{{ player.standarddeviations.fga }}</td>
+                                                    <td>{{ player.standarddeviations.fgpct }}</td>
+                                                    <td>{{ player.standarddeviations.ftm }}</td>
+                                                    <td>{{ player.standarddeviations.fta }}</td>
+                                                    <td>{{ player.standarddeviations.ftpct }}</td>
+                                                    <td>{{ player.standarddeviations.fg3m }}</td>
+                                                    <td>{{ player.standarddeviations.pts }}</td>
+                                                    <td>{{ player.standarddeviations.reb }}</td>
+                                                    <td>{{ player.standarddeviations.ast }}</td>
+                                                    <td>{{ player.standarddeviations.stl }}</td>
+                                                    <td>{{ player.standarddeviations.blk }}</td>
+                                                    <td>{{ player.standarddeviations.tov }}</td>
+                                                </tr>
+                                            {% endif %}
                                         {% endif %}
                                     {% endfor %}
                                 </tbody>

@@ -27,9 +27,9 @@ def refresh(request):
         return render(request, 'main/error.html', {'error': 'Something went wrong.'})
     
 def league(request):
-    league_teams = ESPNTeams.objects.filter(team_id__startswith=request.session['leagueId'])
-    league_players = ESPNPlayers.objects.filter(team__team_id__startswith=request.session['leagueId']).order_by('-player__seasonaverages__mins')
-    return render(request, 'main/league.html', {'teams': league_teams, 'team_players':league_players})
+    league_teams = ESPNTeams.objects.select_related('espnteamaverages').select_related('espnteamstandarddeviations').prefetch_related('espnplayers_set__player__seasonaverages').filter(team_id__startswith=request.session['leagueId'])
+    #league_players = ESPNPlayers.objects.filter(team__team_id__startswith=request.session['leagueId']).order_by('-player__seasonaverages__mins')
+    return render(request, 'main/league.html', {'teams': league_teams})
 
 def success(request):
     if 'teamId' in request.GET:
@@ -118,7 +118,10 @@ def player(request, p_id):
 def players_list(request, stat):
     
     try:
-        player_data = Players.objects.all()
+        if stat == "avg":
+            player_data = Players.objects.select_related('seasonaverages').all()
+        elif stat == "std":
+            player_data = Players.objects.select_related('standarddeviations').all()
     except Players.DoesNotExist as e:
         return render(request, 'main/error.html', {'error': e})
     

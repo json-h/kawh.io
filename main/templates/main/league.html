@@ -100,45 +100,43 @@
                                     </tr>
                                     </thead>
                                     <tbody>   
-                                        {% for player in team_players %}
-                                            {% if player.team.team_id == team.team_id %}
-                                                {% if player.player.seasonaverages %}
-                                                    <tr>
-                                                        <td><a href="{% url 'player' p_id=player.player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.player.full_name }}</a></td>
-                                                        <td>{{ player.player.seasonaverages.mins }}</td>
-                                                        <td>{{ player.player.seasonaverages.fgm }}</td>
-                                                        <td>{{ player.player.seasonaverages.fga }}</td>
-                                                        <td>{{ player.player.seasonaverages.fgpct }}</td>
-                                                        <td>{{ player.player.seasonaverages.ftm }}</td>
-                                                        <td>{{ player.player.seasonaverages.fta }}</td>
-                                                        <td>{{ player.player.seasonaverages.ftpct }}</td>
-                                                        <td>{{ player.player.seasonaverages.fg3m }}</td>
-                                                        <td>{{ player.player.seasonaverages.pts }}</td>
-                                                        <td>{{ player.player.seasonaverages.reb }}</td>
-                                                        <td>{{ player.player.seasonaverages.ast }}</td>
-                                                        <td>{{ player.player.seasonaverages.stl }}</td>
-                                                        <td>{{ player.player.seasonaverages.blk }}</td>
-                                                        <td>{{ player.player.seasonaverages.tov }}</td>
-                                                    </tr>
-                                                {% else %}
-                                                    <tr>
-                                                        <td><a href="{% url 'player' p_id=player.player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ player.player.full_name }}</a></td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                    </tr>
-                                                {% endif %}
+                                        {% for rostered in team.espnplayers_set.all %}
+                                            {% if rostered.player.seasonaverages %}
+                                                <tr>
+                                                    <td><a href="{% url 'player' p_id=rostered.player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ rostered.player.full_name }}</a></td>
+                                                    <td>{{ rostered.player.seasonaverages.mins }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.fgm }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.fga }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.fgpct }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.ftm }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.fta }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.ftpct }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.fg3m }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.pts }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.reb }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.ast }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.stl }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.blk }}</td>
+                                                    <td>{{ rostered.player.seasonaverages.tov }}</td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td><a href="{% url 'player' p_id=rostered.player.player_id %}" style="color:#ff611d; white-space: nowrap;">{{ rostered.player.full_name }}</a></td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                </tr>
                                             {% endif %}
                                         {% endfor %}
                                     </tbody>
