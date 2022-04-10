@@ -1,4 +1,4 @@
-# [kawh.io](https://www.kawh.io)
+# kawh.io
 
 Kawh.io is a Fantasy Basketball wizard for ESPN leagues. You can import your league, get stats for each team, and look up player profiles.
 
@@ -9,12 +9,6 @@ Made with the help of:
 - [Bulma](https://github.com/jgthms/bulma)
 - [cwendt94/espn-api](https://github.com/cwendt94/espn-api)
 
-## Possible Features
-
-- ~~Week comparisons~~ ✅
-- ~~More player and team statistics~~ ✅
-- ~~Full players list~~ ✅
-- Yahoo implementation ⌛
-
+This project is no longer being maintained.
 
 
